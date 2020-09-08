@@ -1,30 +1,28 @@
 const connection = require("connection.js")
 var orm = {
-    selectWhere: function(//stuff goes here 
-        ) 
+    selectAll: function() 
     {
-      var queryString = "SELECT * FROM ?? WHERE ?? = ?";
-      connection.query(queryString, [//stuff goes here
-    ], function(err, result) {
+      var queryString = "SELECT * FROM burgers";
+      connection.query(queryString, function(err, result) {
         if (err) throw err;
         console.log(result);
       });
     },
-    insertOne: function()
+    insertOne: function(name)
     {
-        var queryString = "";
-        connection.query(queryString, [], function(err, result){
+        var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?, false)";
+        connection.query(queryString, name, function(err, result){
             if(err) throw err;
             console.log(result)
         })
     },
-    updateOne: function()
+    updateOne: function(name)
     {
-        var queryString = "";
-        connection.query, [], function(err, result){
+        var queryString = "UPDATE burgers SET devoured WHERE burger_name = ?";
+        connection.query(queryString, name, function(err, result){
             if(err) throw err;
             console.log(result)
-        }
+        })
     }
 }
 module.exports = orm;
