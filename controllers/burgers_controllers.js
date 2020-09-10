@@ -5,14 +5,16 @@ var app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
     //starting page
 });
-app.get("/", function(req, res) {
+app.get("/:new-burger", function(req, res) {
    //insert button 
 });
-app.post("/", function(req, res) {
+app.post("/:eaten-burger", function(req, res) {
     //update button 
 });
+
 //module.exports = router
