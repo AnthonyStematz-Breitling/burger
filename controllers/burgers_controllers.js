@@ -1,20 +1,22 @@
 const express = require("express")
 const burgers = require("../model/burgers.js")
 
-var app = express();
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+var router = express.Router();
 
 // Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
+    burgers.selectAll()
     //starting page
 });
-app.get("/:new-burger", function(req, res) {
+
+router.get("/api/:new-burger", function(req, res) {
+    burgers.insertOne()
    //insert button 
 });
-app.post("/:eaten-burger", function(req, res) {
+
+router.post("/api/:eaten-burger", function(req, res) {
+    burgers.updateOne()
     //update button 
 });
 
-//module.exports = router
+module.exports = router
