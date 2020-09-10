@@ -8,18 +8,18 @@ var orm = {
         console.log(result);
       });
     },
-    insertOne: function(name)
+    insertOne: function(table, col1, col2, name, val)
     {
-        var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?, false)";
-        connection.query(queryString, name, function(err, result){
+        var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
+        connection.query(queryString, {table, col1, col2, name, val}, function(err, result){
             if(err) throw err;
             console.log(result)
         })
     },
-    updateOne: function(name)
+    updateOne: function(table, col1, col2,  name)
     {
-        var queryString = "UPDATE burgers SET devoured WHERE burger_name = ?";
-        connection.query(queryString, name, function(err, result){
+        var queryString = "UPDATE ?? SET ?? WHERE ?? = ?";
+        connection.query(queryString, {table, col2, col1, name}, function(err, result){
             if(err) throw err;
             console.log(result)
         })
