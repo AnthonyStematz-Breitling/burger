@@ -1,27 +1,61 @@
-const connection = require("connection.js")
+const connection = require("./connection.js")
+function objToSql(ob) {
+    var arr = [];
+  
+    // loop through the keys and push the key/value as a string int arr
+    for (var key in ob) {
+      var value = ob[key];
+      // check to skip hidden properties
+      if (Object.hasOwnProperty.call(ob, key)) {
+        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+        // e.g. {sleepy: true} => ["sleepy=true"]
+        arr.push(key + "=" + value);
+      }
+    }
+  
+    // translate array of strings to a single comma-separated string
+    return arr.toString();
+  }
+
+  function printQuestionMarks(num) {
+    var arr = [];
+  
+    for (var i = 0; i < num; i++) {
+      arr.push("?");
+    }
+  
+    return arr.toString();
+  }
+
 var orm = {
-    selectAll: function(table) 
+    selectAll: function(table, cb) 
     {
       var queryString = "SELECT * FROM ??";
       connection.query(queryString, table, function(err, result) {
         if (err) throw err;
-        console.log(result);
+        cb(result);
       });
     },
-    insertOne: function(table, col1, col2, name, val)
+    insertOne: function(table, cols, vals, cb)
     {
-        var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
-        connection.query(queryString, {table, col1, col2, name, val}, function(err, result){
+        cols = cols.toString()
+        questionMarks = printQuestionMarks(vals.length)
+        var queryString = "INSERT INTO " + table + "(" + cols + ") VALUES (" + questionMarks + ")"
+        connection.query(queryString, vals, function(err, result){
             if(err) throw err;
-            console.log(result)
+            cb(result)
         })
     },
-    updateOne: function(table, col1, col2,  name)
+    updateOne: function(table, colsValueobj, col, val, cb)
     {
-        var queryString = "UPDATE ?? SET ?? WHERE ?? = ?";
-        connection.query(queryString, {table, col2, col1, name}, function(err, result){
+        var queryString = "UPDATE " + table + " SET " + objToSql(colsValueobj) + " WHERE " + col + "=?";
+        connection.query(queryString, val, function(err, result){
             if(err) throw err;
-            console.log(result)
+            cb(result)
         })
     }
 }
