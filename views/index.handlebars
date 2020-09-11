@@ -2,12 +2,11 @@
 <h1>Burgers Ready to Eat</h1>
 
 <ul>
-{{#each ready }}
-  <li>{{burgers}}
-    <br>
-    <button>Devour!</button>
-  </li>
-{{/each}}
+{{#each burgers}}
+    {{#unless eaten}}
+      {{> burgers/burger-block eaten=true}}
+    {{/unless}}
+  {{/each}}
 </ul>
 </section>
 
@@ -15,9 +14,16 @@
 <h1>Burgers Eaten</h1>
 
 <ul>
-{{#each eaten }}
-  <li>{{burgers}}
-  </li>
-{{/each}}
+{{#each burgers}}
+    {{#if eaten}}
+      {{> burgers/burger-block eaten=false}}
+    {{/if}}
+  {{/each}}
 </ul>
+</section>
+
+<section>
+  <form>
+    
+  </form>
 </section>
