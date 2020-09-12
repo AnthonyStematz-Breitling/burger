@@ -1,0 +1,18 @@
+body{
+margin-left: 400px;
+margin-top: 150px;
+font-size: 32px;
+background-color: rgb(206, 99, 38);
+}
+h1{
+    font-size: 55px;
+    text-align:center;
+}
+button{
+    background-color:rgb(255, 167, 117) ;
+    font-size: 22px;
+
+}
+section{
+    width:600px
+}

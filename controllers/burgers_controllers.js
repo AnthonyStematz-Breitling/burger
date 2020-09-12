@@ -17,7 +17,7 @@ router.post("/api/new-burger", function(req, res) {
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-    burgers.updateOne(req.params.id, function(result){
+    burgers.updateOne({devoured: req.body.devour}, req.params.id, function(result){
         res.json(true);
     }) 
 });

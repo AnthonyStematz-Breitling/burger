@@ -11,9 +11,9 @@ var burgers = {
             cb(res);
         });
     },
-    updateOne: function(id, cb){
+    updateOne: function(objColvals, id, cb){
         var condition = "id=" + id 
-        orm.updateOne("burgers", {devoured: true}, condition, function(res){
+        orm.updateOne("burgers",objColvals, condition, function(res){
             cb(res);
         });
     }
