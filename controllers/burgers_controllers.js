@@ -10,15 +10,15 @@ router.get("/", function(req, res) {
     })
 });
 
-router.get("/api/:new-burger", function(req, res) {
-    burgers.insertOne(["burger_name", "devoured"], [req.params.name, false], function(result){
-        res.render("index",{burgers: result});
+router.post("/api/new-burger", function(req, res) {
+    burgers.insertOne(["burger_name", "devoured"], [req.body.burger_name, false], function(result){
+        res.json(true);
     })
 });
 
-router.post("/api/:eaten-burger", function(req, res) {
-    burgers.updateOne({devoured: true}, "burger_name", req.params.name, function(result){
-        res.render("index", {burgers: result});
+router.put("/api/burgers/:id", function(req, res) {
+    burgers.updateOne(req.params.id, function(result){
+        res.json(true);
     }) 
 });
 

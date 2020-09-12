@@ -50,10 +50,10 @@ var orm = {
             cb(result)
         })
     },
-    updateOne: function(table, colsValueobj, col, val, cb)
+    updateOne: function(table, objColvals, condition, cb)
     {
-        var queryString = "UPDATE " + table + " SET " + objToSql(colsValueobj) + " WHERE " + col + "=?";
-        connection.query(queryString, val, function(err, result){
+        var queryString = "UPDATE " + table + " SET " + objToSql(objColvals) + " WHERE " + condition;
+        connection.query(queryString, function(err, result){
             if(err) throw err;
             cb(result)
         })
