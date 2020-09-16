@@ -10,6 +10,10 @@ router.get("/", function(req, res) {
     })
 });
 
+router.get("/create", function( req, res){
+    res.render("create")
+})
+
 router.post("/api/new-burger", function(req, res) {
     burgers.insertOne(["burger_name", "devoured"], [req.body.burger_name, false], function(result){
         res.json(true);
