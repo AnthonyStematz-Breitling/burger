@@ -11,7 +11,7 @@ router.get("/", function(req, res) {
 });
 
 router.get("/create", function( req, res){
-    res.render(path.join(__dirname,"create")) 
+    res.render("create") 
 })
 
 router.post("/api/new-burger", function(req, res) {
