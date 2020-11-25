@@ -8,10 +8,17 @@ Eat-Da-Burger! is a restaurant app that lets users input the names of burgers th
 
 
 ## Table of Contents
+ * [Tech-Used](#Tech-Used)
  * [Usage](#usage)
  * [Questions](#questions)
                
-        
+## Tech-Used:
+* Handlebars
+* mySQL
+* Node
+* Express 
+* jQuery
+
 ## Usage
  Whenever a user submits a burger's name, your app will display the burger on the burgers ready section side of the page -- waiting to be eaten.
  
