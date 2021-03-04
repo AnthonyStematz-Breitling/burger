@@ -1,3 +1,4 @@
+const compression = require("compression");
 const express = require("express")
 var PORT = process.env.PORT || 8080;
 
@@ -21,6 +22,7 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controllers.js");
 console.log(routes)
 app.use(routes);
+app.use(compression())
 
 // Start server so that it can begin listening to client requests.
 app.listen(PORT, function() {
