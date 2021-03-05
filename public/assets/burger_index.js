@@ -1,8 +1,8 @@
-const { response } = require("express");
 
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
     $(".change-devoured").on("click", function(event) {
+      console.log("change devour")
       var id = $(this).data("id");
       var newDevour = $(this).data("new");
       console.log(newDevour)
@@ -16,6 +16,7 @@ $(function() {
         data: newDevourState
       }).then(
         function() {
+          console.log("reload")
           // Reload the page to get the updated list
           location.reload();
         }

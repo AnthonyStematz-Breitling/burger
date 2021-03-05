@@ -19,7 +19,6 @@ button{
 button:hover{
     background-color:rgb(252, 80, 0) ;
     border-bottom:solid 3px rgb(195, 62, 0);
-   
 }
 p{
     margin-bottom: 0;
@@ -57,4 +56,14 @@ section{
     color:black;
 }
 
+@media screen and (max-width: 1000px){
+    body{
+        margin-left: 0px;
+        margin-right:0px;
+    }
+    section{
+        margin-left: 0px;
+        margin-right:0px;
+    }
+}
 
